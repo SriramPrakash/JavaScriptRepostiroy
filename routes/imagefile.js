@@ -13,8 +13,15 @@ var imageSchema = mongoose.Schema({
  originalname: {
  type: String,
  required: true
+ },
+ category:{
+     type: String,
+     required: true
+ },
+ price:{
+     type: Number,
+     required: true
  }
- 
 });
  
  
@@ -24,7 +31,10 @@ router.getImages = function(callback, limit) {
  
  Image.find(callback).limit(limit);
 }
- 
+
+router.getImageByCategory=function(category,callback){
+  Image.find({'category':category});
+}
  
 router.getImageById = function(id, callback) {
   
@@ -65,10 +75,17 @@ from the total information, i am just using the path and the imageName to store 
 */
  var path = req.files[0].path;
  var imageName = req.files[0].originalname;
+ var price = req.body.price
+ var category=req.body.category;
+
+ console.log(req.body.price)
+ console.log(req.body.category)
  
  var imagepath = {};
  imagepath['path'] = path;
  imagepath['originalname'] = imageName;
+ imagepath['category']=category;
+ imagepath['price']=price;
  
  
  //imagepath contains two objects, path and the imageName

@@ -62,7 +62,8 @@ var upload = multer({
 });
  
 router.get('/', function(req, res, next) {
- res.render('index.ejs');
+    
+ res.render('index.html')
 });
 
  

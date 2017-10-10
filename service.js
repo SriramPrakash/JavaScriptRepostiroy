@@ -5,6 +5,9 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var path = require('path');
 app.use(bodyParser.json());
+app.engine('html', require('ejs').renderFile);
+
+
  
 //To get the access for the functions defined in index.js class
 var routes = require('./routes/imagefile');

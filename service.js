@@ -9,7 +9,7 @@ app.engine('html', require('ejs').renderFile);
 
 
  
-//To get the access for the functions defined in index.js class
+//To get the access for the functions defined in index.js class 
 var routes = require('./routes/imagefile');
  
 // connect to mongo,
@@ -46,22 +46,24 @@ if (err) {
 throw err;
 }
 //res.download(genres.path);
-var staticpath='D:/Sriram/JSWorkspace/'
+var staticpath='D:/Sriram/JSWorkspace/JavaScriptRepostiroy/'
 res.sendFile(staticpath+genres.path)
 });
 });
 
 app.get('/images/Category/:category', function(req, res) {
     
-   //calling the function from index.js class using routes object..
-   routes.getImageByCategory(req.params.category, function(err, genres) {
-   if (err) {
-   throw err;
-   }
-   //res.download(genres.path);
-   var staticpath='D:/Sriram/JSWorkspace/'
-   res.sendFile(staticpath+genres.path)
-   });
+   var query=routes.getImageByCategory(req.params.category);
+   query.exec(function(err,categories){
+       if(err){
+           return console.log(err);
+       }
+        categories.forEach(function(element) {
+            console.log(element.path)
+            var staticpath='D:/Sriram/JSWorkspace/JavaScriptRepostiroy/'
+            res.sendFile(staticpath+element.path)
+        }, this);      
+   })   
    });
  
 app.listen(3000);

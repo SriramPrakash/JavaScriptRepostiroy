@@ -31,10 +31,6 @@ router.getImages = function(callback, limit) {
  
  Image.find(callback).limit(limit);
 }
-
-router.getImageByCategory=function(category,callback){
-  Image.find({'category':category});
-}
  
 router.getImageById = function(id, callback) {
   
@@ -97,5 +93,12 @@ from the total information, i am just using the path and the imageName to store 
  });
  
 });
+
+router.getImageByCategory=function(category){
+    var query=Image.find({category:category});
+    console.log(query);
+    return query;
+}
+
  
 module.exports = router;

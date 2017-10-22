@@ -1,0 +1,32 @@
+{
+    "GET /beanbags":{
+        "desc":"get all bean bags",
+        "response":"application/json 200",
+        "data":[{},{},{}]
+    },  
+    "GET /beanbags/Red":{
+        "desc":"get all bean bags",
+        "response":"application/json 200",
+        "data":[{},{},{}]
+    }, 
+    "POST /beanbags":{
+        "desc":"create bean bags",
+        "response":"201 application/json",
+        "data":{}
+    },
+    "PUT /beanbags/:id":{
+        "desc":"Update and return the matching bean bag",
+        "response":"200 application/json",
+        "data":{}
+    },
+    "DELETE /beanbags/:id":{
+        "desc":"Delete the matching bean bag",
+        "response":"200 application/json",
+        "data":{}
+    },
+    "GET /beanbags/:id":{
+        "desc":"Get the matching bean bag",
+        "response":"200 application/json",
+        "data":{}
+    }
+}

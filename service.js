@@ -7,7 +7,7 @@ var path = require('path');
 app.use(bodyParser.json());
 app.engine('html', require('ejs').renderFile);
 
-
+app.use(express.static('views'))
  
 //To get the access for the functions defined in index.js class 
 var routes = require('./routes/imagefile');
@@ -15,7 +15,7 @@ var routes = require('./routes/imagefile');
 // connect to mongo,
 //i have created mongo collection in mlab.com.. the below is my database access url..
 //So make sure you give your connection details..
-mongoose.connect('mongodb://localhost:27017/imagedb');
+mongoose.connect(newFunction());
  
 app.use('/', routes);
  
@@ -32,6 +32,7 @@ res.json(genres)
 // res.writeHead(200,{'Content-Type':'image/jpg'})
 // res.end(genres,'utf-8')
  //mongoose.connection.close();
+ //need to check if mongoose connection need to be closed
 });
 
 });
@@ -69,3 +70,6 @@ app.get('/images/Category/:category', function(req, res) {
 app.listen(3000);
  
 console.log('Running on port 3000');
+function newFunction() {
+    return 'mongodb://localhost:27017/imagedb';
+}

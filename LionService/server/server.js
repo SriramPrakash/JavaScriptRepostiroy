@@ -18,12 +18,12 @@ var id=0;
 app.param('id',function(req,res,next,Id){	
 	if(Id !=null){		
 		console.log(lions)
-		var lion=findIndex(lions,{"name":'Sriram'});	
+		var lion=lions[Id];
 		console.log(lion);
-			if(lion){
-				next(new Error('Not Found'));
+			if(!lion){
+				res.status(404);
 			}	
-		req.body= lions[lion];		
+		req.body= lion;		
 	}	
 	next();
 });

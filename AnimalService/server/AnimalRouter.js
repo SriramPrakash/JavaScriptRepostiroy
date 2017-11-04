@@ -23,6 +23,7 @@ app.get('/all',function(req,res,next){
 	allAnimals.push(lionRouter.getAll());
 	allAnimals.push(tigerRouter.getAll());
 	res.json(allAnimals);
+	
 });
 
 app.listen('3000',function(err){

@@ -1,12 +1,10 @@
 var express=require('express');
-var bodyparser=require('body-parser');
-var app=express();
+
+var app=express.Router();
 var _=require('lodash');
 var findIndex = require('lodash.findindex');
 
-app.use(express.static('views'));
-app.use(bodyparser.urlencoded({extended:true}));
-app.use(bodyparser.json());
+
 //console.log(app);
 
 var lions=[];
@@ -27,16 +25,19 @@ app.param('id',function(req,res,next,Id){
 	}	
 	next();
 });
-
-app.get('/lions',function(req,res){
+app.getAll=function(callback){
+	return lions;
+}
+app.get('/',function(req,res){
 	res.json(lions);
 });
 
-app.get('/lions/:id',function(req,res){
+app.get('/:id',function(req,res){
 	res.json(req.body)
 });
 
-app.post('/lions',function(req,res,next){
+app.post('/',function(req,res,next){
+	
 			var lion=req.body;
 			if(lion.id!=null){			
 				if(!lions[lion.id]){
@@ -56,28 +57,18 @@ app.post('/lions',function(req,res,next){
 			lion.id=id;
 			lions.push(lion);
 		}
+
 		res.json(lion)
 	});
 
-app.put('/lions/:id',function(req,res){
+app.put('/:id',function(req,res){
 
-	var deletedLion = req.body.lion;
+	var deletedLion = req.body;
 	lions.splice(deletedLion.id,1);
 	res.json(deletedLion);
 	
 });
 
-app.use(function(err){
-	if(err){
-		console.log(err);
-	}
-});
 
-app.listen('3000',function(err){
-	if(err){
-		console.log(err)
-	}
-	else{
-		console.log('Listening on port 3000')
-	}
-})
+
+module.exports=app;

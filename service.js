@@ -2,7 +2,7 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
+//var mongoose = require('mongoose');
 var path = require('path');
 app.use(bodyParser.json());
 app.engine('html', require('ejs').renderFile);
@@ -11,11 +11,11 @@ app.use(express.static('views'))
  
 //To get the access for the functions defined in index.js class 
 var routes = require('./routes/imagefile');
- 
+routes.connect(); 
 // connect to mongo,
 //i have created mongo collection in mlab.com.. the below is my database access url..
 //So make sure you give your connection details..
-mongoose.connect(newFunction());
+//mongoose.connect(newFunction());
  
 app.use('/', routes);
  
@@ -70,6 +70,6 @@ app.get('/images/Category/:category', function(req, res) {
 app.listen(3000);
  
 console.log('Running on port 3000');
-function newFunction() {
+/*function newFunction() {
     return 'mongodb://localhost:27017/imagedb';
-}
+}*/

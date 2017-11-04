@@ -23,9 +23,12 @@ var imageSchema = mongoose.Schema({
      required: true
  }
 });
+
+router.connect = function(callback){
+	mongoose.connect('mongodb://localhost:27017/imagedb')
+}
  
- 
-var Image = module.exports = mongoose.model('files', imageSchema);
+var Image = mongoose.model('files', imageSchema);
  
 router.getImages = function(callback, limit) {
  

@@ -29,15 +29,10 @@ app.getAll=function(callback){
 	return tigers;
 }
 
-app.get('/',function(req,res){
+app.route('/').get(function(req,res){
 	res.json(tigers);
-});
-
-app.get('/:id',function(req,res){
-	res.json(req.body)
-});
-
-app.post('/',function(req,res,next){
+})
+.post(function(req,res,next){
 	
 			var tiger=req.body;
 			if(tiger.id!=null){			
@@ -62,13 +57,57 @@ app.post('/',function(req,res,next){
 		res.json(tiger)
 	});
 
-app.put('/:id',function(req,res){
+app.route('/:id').get(function(req,res){
+	res.json(req.body)
+})
+.post(function(req,res){
 
 	var deletedtigers = req.body;
 	tigers.splice(deletedtigers.id,1);
 	res.json(deletedtigers);
 	
 });
+
+/*app.get('/',function(req,res){
+	res.json(tigers);
+});*/
+
+/*app.get('/:id',function(req,res){
+	res.json(req.body)
+});*/
+
+/*app.post('/',function(req,res,next){
+	
+			var tiger=req.body;
+			if(tiger.id!=null){			
+				if(!tigers[tiger.id]){
+					id++;
+					tiger.id=id;
+					tigers.push(tiger);
+				}
+				else{
+					tigers[tiger.id].name=tiger.name;
+					tigers[tiger.id].pride=tiger.pride;
+					tigers[tiger.id].type=tiger.type;
+				}
+						
+		}
+		else{
+			id++;
+			tigers.id=id;
+			tigers.push(tiger);
+		}
+
+		res.json(tiger)
+	});*/
+
+/*app.put('/:id',function(req,res){
+
+	var deletedtigers = req.body;
+	tigers.splice(deletedtigers.id,1);
+	res.json(deletedtigers);
+	
+});*/
 
 
 module.exports=app;

@@ -28,15 +28,11 @@ app.param('id',function(req,res,next,Id){
 app.getAll=function(callback){
 	return lions;
 }
-app.get('/',function(req,res){
-	res.json(lions);
-});
 
-app.get('/:id',function(req,res){
+app.route('/').get(function(req,res){
 	res.json(req.body)
-});
-
-app.post('/',function(req,res,next){
+})
+.post(function(req,res,next){
 	
 			var lion=req.body;
 			if(lion.id!=null){			
@@ -61,14 +57,28 @@ app.post('/',function(req,res,next){
 		res.json(lion)
 	});
 
-app.put('/:id',function(req,res){
+app.route('/:id')
+.get(function(req,res){
+	res.json(req.body)
+})
+.put(function(req,res){
 
 	var deletedLion = req.body;
 	lions.splice(deletedLion.id,1);
 	res.json(deletedLion);
 	
 });
+/*
+app.get('/',function(req,res){
+	res.json(lions);
+});
 
+app.get('/:id',);
 
+app.post('/',);
+
+app.put('/:id',);
+
+*/
 
 module.exports=app;

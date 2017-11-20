@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<script>
+$(document).ready(function(){
+    $("#button1").hover(function(){
+        $("#button1").attr("disabled", true);
+        $("p").on("click", function(){
+    	$(this).fadeIn("slow");
+	});
+    });
+});
+</script>
+</head>
+<body>
+
+<h2 id="head">This is a heading</h2>
+
+<p class="Para">This is a paragraph.</p>
+<p>This is another paragraph.</p>
+
+<button id="button1">Click me to hide paragraphs</button>
+
+</body>
+</html>

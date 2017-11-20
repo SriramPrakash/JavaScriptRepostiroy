@@ -3,13 +3,16 @@ var bodyparser=require('body-parser');
 var lionRouter=require('./LionRoute');
 var tigerRouter=require('./TigerRoute');
 
+
 var app=express();
+
 
 app.use(express.static('views'));
 app.use(bodyparser.urlencoded({extended:true}));
 app.use(bodyparser.json());
 app.use('/lions',lionRouter);
 app.use('/tiger',tigerRouter);
+app.use(fun)
 
 app.use(function(err,req,res,next){
 	if(err){		
@@ -34,3 +37,5 @@ app.listen('3000',function(err){
 		console.log('Listening on port 3000')
 	}
 })
+
+modules.exports=app;

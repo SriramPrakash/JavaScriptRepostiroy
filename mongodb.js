@@ -2,7 +2,7 @@ var MongoClient = require( 'mongodb' ).MongoClient;
 var util = require('util');
 var config = require('./config');
 var _db;
- 
+//Please check this logic
 var uri = util.format('mongodb://%s:%d/%s',
     config.mongodb.host, config.mongodb.port, config.mongodb.databaseName);
  
